@@ -73,44 +73,191 @@
 totstart = tic ;
 
 %%%%% USER PARAMETERS %%%%%
-para.romeo_command = '/your_path/romeo_linux_3.2.0/bin/romeo' ;
-para.in_root_dir = '/your/root/path' ;
-para.out_root_dir =   '/your/output/path';
+para.romeo_command = 'C:\wtcnapps\mritools_Windows_3.6.4\bin\romeo' ;
+para.in_root_dir = 'C:\Users\czhang\Documents\DATA' ;
+para.out_root_dir =   'C:\Users\czhang\Documents\DATA';
 
-para.B0 = 3;
+para.B0 = 7;
 para.B0_dir = [0;1;0];	% main magnetic field direction after reslicing the data
 para.dipole_inv = 'Star-QSM' ;
 
-para.data_cleanup = 'big' ; % 'small' leaves B0 maps and QSMs, 'big' leaves only QSMs
+para.data_cleanup = 'no' ; % 'small' leaves B0 maps and QSMs, 'big' leaves only QSMs 
 
-for run = 1:3
+for run = 2:24
     
     switch run
-        case 1 % PDw
-            para.mag_dir = 'pdw/mag/' ; % folder with magnitude niftis
-            para.ph_dir = 'pdw/ph/' ; % folder with phase inftis
-            para.TEs =  2.3*[1 2 3 4 5 6 7 8] ;  % echo time in ms
-            para.output_dir = 'QSM_pdw' ; % output directory for a specific submeasurement from MPM
-            para.mask_thr = 0.15 ; % larger threshold smaller mask
+        case 1 % PDw351_1
+            para.mag_dir = '20220505.M700351\pdw_scan1\MPM_pdw\mag_dc.nii' ; % folder with magnitude niftis
+            para.ph_dir = '20220505.M700351\pdw_scan1\MPM_pdw\ph_dc.nii' ; % folder with phase inftis
+            para.TEs =  [2.2 4.58 6.96 9.34 11.72 14.10] ;  % echo time in ms
+            para.output_dir = '20220505.M700351\pdw_scan1\QSM_MPM_pdw_v2' ; % output directory for a specific submeasurement from MPM
+            para.mask_thr = 0.2 ; % larger threshold smaller mask
             
-        case 2 % T1w
-            para.mag_dir = 't1w/mag/' ;
-            para.ph_dir = 't1w/ph/' ;
-            para.TEs = 2.3*[1 2 3 4 5 6 7 8] ;
-            para.output_dir = 'QSM_t1w' ;
+        case 2 % T1w351_1
+            para.mag_dir = '20220505.M700351\t1w_scan1\MPM_t1w\mag_dc.nii' ; %added .nii to all mag_dc and ph_dc
+            para.ph_dir = '20220505.M700351\t1w_scan1\MPM_t1w\ph_dc.nii' ;
+            para.TEs = [2.3 4.68 7.06 9.44 11.82 14.20] ;
+            para.output_dir = '20220505.M700351\t1w_scan1\QSM_MPM_t1w_v2' ;
+            para.mask_thr = 0.2 ; 
+            
+        case 3 % MTw351_1
+            para.mag_dir = '20220505.M700351\mtw_scan1\MPM_mtw\mag_dc.nii' ;
+            para.ph_dir = '20220505.M700351\mtw_scan1\MPM_mtw\ph_dc.nii' ;
+            para.TEs = [2.2 4.58 6.96 9.34] ; 
+            para.output_dir = '20220505.M700351\mtw_scan1\QSM_MPM_mtw_v2' ;
             para.mask_thr = 0.15 ; 
+ 
+        case 4 % PDw351_2
+            para.mag_dir = '20220505.M700351\pdw_scan2\MPM_pdw\mag_dc.nii' ; % folder with magnitude niftis
+            para.ph_dir = '20220505.M700351\pdw_scan2\MPM_pdw\ph_dc.nii' ; % folder with phase inftis
+            para.TEs =  [2.2 4.58 6.96 9.34 11.72 14.10] ;  % echo time in ms
+            para.output_dir = '20220505.M700351\pdw_scan2\QSM_MPM_pdw_v2' ; % output directory for a specific submeasurement from MPM
+            para.mask_thr = 0.2 ; % larger threshold smaller mask
             
-        case 3 % MTw
-            para.mag_dir = 'mtw/mag/' ;
-            para.ph_dir = 'mtw/ph/' ;
-            para.TEs = 2.3*[1 2 3 4 5 6] ; 
-            para.output_dir = 'QSM_mtw' ;
-            para.mask_thr = 0.1 ;
+        case 5 % T1w351_2
+            para.mag_dir = '20220505.M700351\t1w_scan2\MPM_t1w\mag_dc.nii' ;
+            para.ph_dir = '20220505.M700351\t1w_scan2\MPM_t1w\ph_dc.nii' ;
+            para.TEs = [2.3 4.68 7.06 9.44 11.82 14.20] ;
+            para.output_dir = '20220505.M700351\t1w_scan2\QSM_MPM_t1w_v2' ;
+            para.mask_thr = 0.2 ; 
+            
+        case 6 % MTw351_2
+            para.mag_dir = '20220505.M700351\mtw_scan2\MPM_mtw\mag_dc.nii' ;
+            para.ph_dir = '20220505.M700351\mtw_scan2\MPM_mtw\ph_dc.nii' ;
+            para.TEs = [2.2 4.58 6.96 9.34] ; 
+            para.output_dir = '20220505.M700351\mtw_scan2\QSM_MPM_mtw_v2' ;
+            para.mask_thr = 0.15 ;
+        
+        case 7 % PDw198_1
+            para.mag_dir = '20210623.M700198\pdw_scan1\MPM_pdw\mag_dc.nii' ; % folder with magnitude niftis
+            para.ph_dir = '20210623.M700198\pdw_scan1\MPM_pdw\ph_dc.nii' ; % folder with phase inftis
+            para.TEs =  [2.2 4.58 6.96 9.34 11.72 14.10] ;  % echo time in ms
+            para.output_dir = '20210623.M700198\pdw_scan1\QSM_MPM_pdw_v2' ; % output directory for a specific submeasurement from MPM
+            para.mask_thr = 0.2 ; % larger threshold smaller mask
+            
+        case 8 % T1w198_1
+            para.mag_dir = '20210623.M700198\t1w_scan1\MPM_t1w\mag_dc.nii' ;
+            para.ph_dir = '20210623.M700198\t1w_scan1\MPM_t1w\ph_dc.nii' ;
+            para.TEs = [2.3 4.68 7.06 9.44 11.82 14.20] ;
+            para.output_dir = '20210623.M700198\t1w_scan1\QSM_MPM_t1w_v2' ;
+            para.mask_thr = 0.2 ; 
+            
+        case 9 % MTw198_1
+            para.mag_dir = '20210623.M700198\mtw_scan1\MPM_mtw\mag_dc.nii' ;
+            para.ph_dir = '20210623.M700198\mtw_scan1\MPM_mtw\ph_dc.nii' ;
+            para.TEs = [2.2 4.58 6.96 9.34] ; 
+            para.output_dir = '20210623.M700198\mtw_scan1\QSM_MPM_mtw_v2' ;
+            para.mask_thr = 0.15 ;
+         
+        case 10 % PDw198_2
+            para.mag_dir = '20210623.M700198\pdw_scan2\MPM_pdw\mag_dc.nii' ; % folder with magnitude niftis
+            para.ph_dir = '20210623.M700198\pdw_scan2\MPM_pdw\ph_dc.nii' ; % folder with phase inftis
+            para.TEs =  [2.2 4.58 6.96 9.34 11.72 14.10] ;  % echo time in ms
+            para.output_dir = '20210623.M700198\pdw_scan2\QSM_MPM_pdw_v2' ; % output directory for a specific submeasurement from MPM
+            para.mask_thr = 0.2 ; % larger threshold smaller mask
+            
+        case 11 % T1w198_2
+            para.mag_dir = '20210623.M700198\t1w_scan2\MPM_t1w\mag_dc.nii' ;
+            para.ph_dir = '20210623.M700198\t1w_scan2\MPM_t1w\ph_dc.nii' ;
+            para.TEs = [2.3 4.68 7.06 9.44 11.82 14.20] ;
+            para.output_dir = '20210623.M700198\t1w_scan2\QSM_MPM_t1w_v2' ;
+            para.mask_thr = 0.2 ; 
+            
+        case 12 % MTw198_2
+            para.mag_dir = '20210623.M700198\mtw_scan2\MPM_mtw\mag_dc.nii' ;
+            para.ph_dir = '20210623.M700198\mtw_scan2\MPM_mtw\ph_dc.nii' ;
+            para.TEs = [2.2 4.58 6.96 9.34] ; 
+            para.output_dir = '20210623.M700198\mtw_scan2\QSM_MPM_mtw_v2' ;
+            para.mask_thr = 0.15 ;
+        
+        case 13 % PDw350_1
+            para.mag_dir = '20220504.M700350\pdw_scan1\MPM_pdw\mag_dc.nii' ; % folder with magnitude niftis
+            para.ph_dir = '20220504.M700350\pdw_scan1\MPM_pdw\ph_dc.nii' ; % folder with phase inftis
+            para.TEs =  [2.2 4.58 6.96 9.34 11.72 14.10] ;  % echo time in ms
+            para.output_dir = '20220504.M700350\pdw_scan1\QSM_MPM_pdw_v2' ; % output directory for a specific submeasurement from MPM
+            para.mask_thr = 0.2 ; % larger threshold smaller mask
+            
+        case 14 % T1w350_1
+            para.mag_dir = '20220504.M700350\t1w_scan1\MPM_t1w\mag_dc.nii' ;
+            para.ph_dir = '20220504.M700350\t1w_scan1\MPM_t1w\ph_dc.nii' ;
+            para.TEs = [2.3 4.68 7.06 9.44 11.82 14.20] ;
+            para.output_dir = '20220504.M700350\t1w_scan1\QSM_MPM_t1w_v2' ;
+            para.mask_thr = 0.2 ; 
+            
+        case 15 % MTw350_1
+            para.mag_dir = '20220504.M700350\mtw_scan1\MPM_mtw\mag_dc.nii' ;
+            para.ph_dir = '20220504.M700350\mtw_scan1\MPM_mtw\ph_dc.nii' ;
+            para.TEs = [2.2 4.58 6.96 9.34] ; 
+            para.output_dir = '20220504.M700350\mtw_scan1\QSM_MPM_mtw_v2' ;
+            para.mask_thr = 0.15 ;
+                    
+        case 16 % PDw350_2
+            para.mag_dir = '20220504.M700350\pdw_scan2\MPM_pdw\mag_dc.nii' ; % folder with magnitude niftis
+            para.ph_dir = '20220504.M700350\pdw_scan2\MPM_pdw\ph_dc.nii' ; % folder with phase inftis
+            para.TEs =  [2.2 4.58 6.96 9.34 11.72 14.10] ;  % echo time in ms
+            para.output_dir = '20220504.M700350\pdw_scan2\QSM_MPM_pdw_v2' ; % output directory for a specific submeasurement from MPM
+            para.mask_thr = 0.2 ; % larger threshold smaller mask
+            
+        case 17 % T1w350_2
+            para.mag_dir = '20220504.M700350\t1w_scan2\MPM_t1w\mag_dc.nii' ;
+            para.ph_dir = '20220504.M700350\t1w_scan2\MPM_t1w\ph_dc.nii' ;
+            para.TEs = [2.3 4.68 7.06 9.44 11.82 14.20] ;
+            para.output_dir = '20220504.M700350\t1w_scan2\QSM_MPM_t1w_v2' ;
+            para.mask_thr = 0.2 ; 
+            
+        case 18 % MTw350_2
+            para.mag_dir = '20220504.M700350\mtw_scan2\MPM_mtw\mag_dc.nii' ;
+            para.ph_dir = '20220504.M700350\mtw_scan2\MPM_mtw\ph_dc.nii' ;
+            para.TEs = [2.2 4.58 6.96 9.34] ; 
+            para.output_dir = '20220504.M700350\mtw_scan2\QSM_MPM_mtw_v2' ;
+            para.mask_thr = 0.15 ;
+                    
+        case 19 % PDw213_1
+            para.mag_dir = '20221114.M700213\pdw_scan1\MPM_pdw\mag_dc.nii' ; % folder with magnitude niftis
+            para.ph_dir = '20221114.M700213\pdw_scan1\MPM_pdw\ph_dc.nii' ; % folder with phase inftis
+            para.TEs =  [2.2 4.58 6.96 9.34 11.72 14.10] ;  % echo time in ms
+            para.output_dir = '20221114.M700213\pdw_scan1\QSM_MPM_pdw_v2' ; % output directory for a specific submeasurement from MPM
+            para.mask_thr = 0.2 ; % larger threshold smaller mask
+            
+        case 20 % T1w213_1
+            para.mag_dir = '20221114.M700213\t1w_scan1\MPM_t1w\mag_dc.nii' ;
+            para.ph_dir = '20221114.M700213\t1w_scan1\MPM_t1w\ph_dc.nii' ;
+            para.TEs = [2.3 4.68 7.06 9.44 11.82 14.20] ;
+            para.output_dir = '20221114.M700213\t1w_scan1\QSM_MPM_t1w_v2' ;
+            para.mask_thr = 0.2 ; 
+            
+        case 21 % MTw213_1
+            para.mag_dir = '20221114.M700213\mtw_scan1\MPM_mtw\mag_dc.nii' ;
+            para.ph_dir = '20221114.M700213\mtw_scan1\MPM_mtw\ph_dc.nii' ;
+            para.TEs = [2.2 4.58 6.96 9.34] ; 
+            para.output_dir = '20221114.M700213\mtw_scan1\QSM_MPM_mtw_v2' ;
+            para.mask_thr = 0.15 ;
+                    
+        case 22 % PDw213_2
+            para.mag_dir = '20221114.M700213\pdw_scan2\MPM_pdw\mag_dc.nii' ; % folder with magnitude niftis
+            para.ph_dir = '20221114.M700213\pdw_scan2\MPM_pdw\ph_dc.nii' ; % folder with phase inftis
+            para.TEs =  [2.2 4.58 6.96 9.34 11.72 14.10] ;  % echo time in ms
+            para.output_dir = '20221114.M700213\pdw_scan2\QSM_MPM_pdw_v2' ; % output directory for a specific submeasurement from MPM
+            para.mask_thr = 0.2 ; % larger threshold smaller mask
+            
+        case 23 % T1w213_2
+            para.mag_dir = '20221114.M700213\t1w_scan2\MPM_t1w\mag_dc.nii' ;
+            para.ph_dir = '20221114.M700213\t1w_scan2\MPM_t1w\ph_dc.nii' ;
+            para.TEs = [2.3 4.68 7.06 9.44 11.82 14.20] ;
+            para.output_dir = '20221114.M700213\t1w_scan2\QSM_MPM_t1w_v2' ;
+            para.mask_thr = 0.2 ; 
+            
+        case 24 % MTw213_2
+            para.mag_dir = '20221114.M700213\mtw_scan2\MPM_mtw\mag_dc.nii' ;
+            para.ph_dir = '20221114.M700213\mtw_scan2\MPM_mtw\ph_dc.nii' ;
+            para.TEs = [2.2 4.58 6.96 9.34] ; 
+            para.output_dir = '20221114.M700213\mtw_scan2\QSM_MPM_mtw_v2' ;
+            para.mask_thr = 0.15 ;
  
     end
     %%%%% END OF USER PARAMETERS %%%%%
     
-MPM_QSM(para) ;
+MPM_QSM_4d(para) ;
     
 end
 
